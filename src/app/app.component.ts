@@ -9,7 +9,7 @@ import { CommonModule } from '@angular/common';
   standalone: true,
   imports: [RouterOutlet, UserComponent, CommonModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss',
+  styleUrl: './app.component.scss'
 })
 export class AppComponent {
   title = 'app0';
@@ -18,15 +18,16 @@ export class AppComponent {
     {
       name: 'Jesica',
       surname: 'Alba',
+      admin: true
     },
     {
       name: 'Pablo',
-      surname: 'Sanchez',
+      surname: 'Sanchez'
     },
     {
       name: 'Lucia',
-      surname: 'Garcia',
-    },
+      surname: 'Garcia'
+    }
   ];
 
   selectedUser(user: User) {

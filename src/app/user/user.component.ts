@@ -5,22 +5,25 @@ import {
   OnChanges,
   OnInit,
   Output,
-  SimpleChanges,
+  SimpleChanges
 } from '@angular/core';
 import { User } from '../dominio/user';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss',
+  styleUrl: './user.component.scss'
 })
 export class UserComponent implements User, OnInit, OnChanges {
   @Input()
   name = '';
   @Input()
   surname = '';
+  @Input()
+  admin? = false;
   @Output()
   selectedUser = new EventEmitter<User>();
 
@@ -43,6 +46,7 @@ export class UserComponent implements User, OnInit, OnChanges {
     this.selectedUser.emit({
       name: this.name,
       surname: this.surname,
+      admin: this.admin
     });
   }
 }
