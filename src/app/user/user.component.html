@@ -1,7 +1,7 @@
 <div class="user">
   <span [class.classAdmin]="admin">{{ name }} {{ surname }}</span>
   <div *ngIf="admin; else operador" class="admin">Administrador</div>
-  <button [hidden]="admin" (click)="pulsado()">Seleccioname</button>
+  <button (click)="pulsado()">Seleccioname</button>
 </div>
 
 <ng-template #operador>
