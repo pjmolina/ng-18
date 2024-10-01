@@ -2,8 +2,9 @@
 
 <app-user
   *ngFor="let u of lista"
-  name="{{ u.name }}"
-  surname="{{ u.surname }}"
+  [name]="u.name"
+  [surname]="u.surname"
+  [admin]="u.admin"
   (selectedUser)="selectedUser($event)"
 ></app-user>
 
