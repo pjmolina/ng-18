@@ -33,4 +33,9 @@ export class AppComponent {
     //console.log('Se seleciono ' + user.name + ' ' + user.surname);
     console.log(`Se seleciono ${user.name} ${user.surname}`);
   }
+
+  cambiaNombre(): void {
+    this.lista[0].name = 'Alicia';
+    this.lista[0].surname = 'Keys';
+  }
 }
