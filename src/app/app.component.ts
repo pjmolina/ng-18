@@ -4,19 +4,26 @@ import { UserComponent } from './user/user.component';
 import { User } from './dominio/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { LoggerService } from './services/logger.service';
 import { LoggerV2Service } from './services/loger-v2.service';
+import { CurrencyPipe } from './pipes/currency.pipe';
 
 @Component({
   selector: 'app-root',
   standalone: true,
-  imports: [RouterOutlet, UserComponent, CommonModule, FormsModule],
+  imports: [
+    RouterOutlet,
+    UserComponent,
+    CommonModule,
+    FormsModule,
+    CurrencyPipe
+  ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
   providers: [LoggerV2Service]
 })
 export class AppComponent {
   title = 'app0';
+  importe = 12000000.2344;
 
   lista: User[] = [
     {

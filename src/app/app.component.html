@@ -13,7 +13,11 @@
 <input [(ngModel)]="this.lista[0].name" />
 
 <pre>
-  {{ toJson(lista) }}
+  {{ lista | json }}
 </pre>
+
+Prespuesto {{ importe | currency : 'Eur' }}
+
+Ejemplo: {{ 'Un texto de ejemplo.' | uppercase | lowercase }}
 
 <router-outlet />
