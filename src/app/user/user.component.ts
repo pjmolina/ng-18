@@ -10,6 +10,7 @@ import {
 import { User } from '../dominio/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoggerService } from '../services/logger.service';
 
 @Component({
   selector: 'app-user',
@@ -54,21 +55,21 @@ export class UserComponent implements User, OnInit, OnChanges {
   @Output()
   selectedUser = new EventEmitter<User>();
 
-  constructor() {
-    console.log(`constructor para ${this.name}`);
+  constructor(private logger: LoggerService) {
+    this.logger.log(`constructor para ${this.name}`);
   }
 
   ngOnChanges(changes: SimpleChanges): void {
-    console.log(changes);
+    this.logger.log(changes);
   }
 
   // Hollywood Principle
   ngOnInit(): void {
-    console.log(`Inicalizando el componente user para ${this.name}`);
+    this.logger.log(`Inicalizando el componente user para ${this.name}`);
   }
 
   pulsado(): void {
-    console.log(`Pulsado. estamos aqui. ${this.name}`);
+    this.logger.log(`Pulsado. estamos aqui. ${this.name}`);
 
     this.selectedUser.emit({
       name: this.name,

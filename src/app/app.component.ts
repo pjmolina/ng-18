@@ -4,13 +4,16 @@ import { UserComponent } from './user/user.component';
 import { User } from './dominio/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
+import { LoggerService } from './services/logger.service';
+import { LoggerV2Service } from './services/loger-v2.service';
 
 @Component({
   selector: 'app-root',
   standalone: true,
   imports: [RouterOutlet, UserComponent, CommonModule, FormsModule],
   templateUrl: './app.component.html',
-  styleUrl: './app.component.scss'
+  styleUrl: './app.component.scss',
+  providers: [LoggerV2Service]
 })
 export class AppComponent {
   title = 'app0';
@@ -31,9 +34,11 @@ export class AppComponent {
     }
   ];
 
+  constructor(private logger: LoggerV2Service) {}
+
   selectedUser(user: User) {
-    //console.log('Se seleciono ' + user.name + ' ' + user.surname);
-    console.log(`Se seleciono ${user.name} ${user.surname}`);
+    //this.logger.log('Se seleciono ' + user.name + ' ' + user.surname);
+    this.logger.log(`Se seleciono ${user.name} ${user.surname}`);
   }
 
   cambiaNombre(): void {
