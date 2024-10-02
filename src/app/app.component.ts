@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoggerV2Service } from './services/loger-v2.service';
 import { CurrencyPipe } from './pipes/currency.pipe';
+import { FilterByPipe } from './pipes/filter-by.pipe';
 
 @Component({
   selector: 'app-root',
@@ -15,7 +16,8 @@ import { CurrencyPipe } from './pipes/currency.pipe';
     UserComponent,
     CommonModule,
     FormsModule,
-    CurrencyPipe
+    CurrencyPipe,
+    FilterByPipe
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -24,6 +26,7 @@ import { CurrencyPipe } from './pipes/currency.pipe';
 export class AppComponent {
   title = 'app0';
   importe = 12000000.2344;
+  searchText = '';
 
   lista: User[] = [
     {

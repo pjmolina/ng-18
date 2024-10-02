@@ -1,7 +1,14 @@
 <h1>App0</h1>
 
+<div class="filter">
+  <input
+    type="text"
+    placeholder="Escribe aqui para filtrar"
+    [(ngModel)]="searchText"
+  />
+</div>
 <app-user
-  *ngFor="let u of lista"
+  *ngFor="let u of lista | filterBy : searchText : 'surname'"
   [(name)]="u.name"
   [(surname)]="u.surname"
   [admin]="u.admin"
