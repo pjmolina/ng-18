@@ -40,4 +40,8 @@ export class AppComponent {
     this.lista[0].name = 'Alicia';
     this.lista[0].surname = 'Keys';
   }
+
+  toJson(obj: unknown): string {
+    return JSON.stringify(obj, null, 2);
+  }
 }

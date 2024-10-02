@@ -2,8 +2,8 @@
 
 <app-user
   *ngFor="let u of lista"
-  [name]="u.name"
-  [surname]="u.surname"
+  [(name)]="u.name"
+  [(surname)]="u.surname"
   [admin]="u.admin"
   (selectedUser)="selectedUser($event)"
 ></app-user>
@@ -11,5 +11,9 @@
 <button (click)="cambiaNombre()">Cambio de nombre</button>
 
 <input [(ngModel)]="this.lista[0].name" />
+
+<pre>
+  {{ toJson(lista) }}
+</pre>
 
 <router-outlet />

@@ -1,5 +1,7 @@
 <div class="user">
-  <span [class.classAdmin]="admin">{{ name }} {{ surname }}</span>
+  <input type="text" [(ngModel)]="name" />
+  <input type="text" [(ngModel)]="surname" />
+  <!-- <span [class.classAdmin]="admin">{{ name }} {{ surname }}</span> -->
   <div *ngIf="admin; else operador" class="admin">Administrador</div>
   <button (click)="pulsado()">Seleccioname</button>
 </div>

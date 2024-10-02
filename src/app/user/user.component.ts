@@ -9,19 +9,46 @@ import {
 } from '@angular/core';
 import { User } from '../dominio/user';
 import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-user',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
   styleUrl: './user.component.scss'
 })
 export class UserComponent implements User, OnInit, OnChanges {
+  private _name = '';
+  private _surname = '';
+
   @Input()
-  name = '';
+  get name(): string {
+    return this._name;
+  }
+  set name(n: string) {
+    if (n != this._name) {
+      this._name = n;
+      this.nameChange.emit(n);
+    }
+  }
+  @Output()
+  nameChange = new EventEmitter<string>();
+
   @Input()
-  surname = '';
+  get surname(): string {
+    return this._surname;
+  }
+  set surname(n: string) {
+    if (n != this._surname) {
+      this._surname = n;
+      this.surnameChange.emit(n);
+    }
+  }
+
+  @Output()
+  surnameChange = new EventEmitter<string>();
+
   @Input()
   admin? = false;
   @Output()
