@@ -8,6 +8,9 @@ import { LoggerV2Service } from './services/loger-v2.service';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { FilterByPipe } from './pipes/filter-by.pipe';
 import { ResaltarDirective } from './directives/resaltar.directive';
+import { PizzaComponent } from './pizzas/pizza.component';
+import { Pizza } from './dominio/pizza';
+import { PizzaService } from './services/pizza.service';
 
 @Component({
   selector: 'app-root',
@@ -19,7 +22,8 @@ import { ResaltarDirective } from './directives/resaltar.directive';
     FormsModule,
     CurrencyPipe,
     FilterByPipe,
-    ResaltarDirective
+    ResaltarDirective,
+    PizzaComponent
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',
@@ -29,6 +33,8 @@ export class AppComponent {
   title = 'app0';
   importe = 12000000.2344;
   searchText = '';
+
+  pizzas: Pizza[] = [];
 
   lista: User[] = [
     {
@@ -46,7 +52,10 @@ export class AppComponent {
     }
   ];
 
-  constructor(private logger: LoggerV2Service) {}
+  constructor(
+    private logger: LoggerV2Service,
+    private pizzaService: PizzaService
+  ) {}
 
   selectedUser(user: User) {
     //this.logger.log('Se seleciono ' + user.name + ' ' + user.surname);
@@ -60,5 +69,11 @@ export class AppComponent {
 
   toJson(obj: unknown): string {
     return JSON.stringify(obj, null, 2);
+  }
+
+  consultar(): void {
+    this.pizzaService.getPizzas().then((data) => {
+      this.pizzas = data ?? [];
+    });
   }
 }

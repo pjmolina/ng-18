@@ -31,4 +31,7 @@ Prespuesto {{ importe | currency : 'Eur' }}
 
 <div appResaltar color="lightgreen">otro texto diferente</div>
 
+<button (click)="consultar()">Consultar</button>
+<app-pizza *ngFor="let p of pizzas" [pizza]="p"></app-pizza>
+
 <router-outlet />

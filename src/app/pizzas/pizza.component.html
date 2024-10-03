@@ -1,0 +1,10 @@
+<div>
+  <div *ngIf="pizza; else noPizza" class="pizza">
+    <div>{{ pizza!.name }}</div>
+    <div>{{ pizza!.price }} EUR</div>
+  </div>
+</div>
+
+<ng-template #noPizza>
+  <div>Sin datos...</div>
+</ng-template>
