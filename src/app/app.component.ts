@@ -7,6 +7,7 @@ import { FormsModule } from '@angular/forms';
 import { LoggerV2Service } from './services/loger-v2.service';
 import { CurrencyPipe } from './pipes/currency.pipe';
 import { FilterByPipe } from './pipes/filter-by.pipe';
+import { ResaltarDirective } from './directives/resaltar.directive';
 
 @Component({
   selector: 'app-root',
@@ -17,7 +18,8 @@ import { FilterByPipe } from './pipes/filter-by.pipe';
     CommonModule,
     FormsModule,
     CurrencyPipe,
-    FilterByPipe
+    FilterByPipe,
+    ResaltarDirective
   ],
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss',

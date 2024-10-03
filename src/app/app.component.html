@@ -25,6 +25,10 @@
 
 Prespuesto {{ importe | currency : 'Eur' }}
 
-Ejemplo: {{ 'Un texto de ejemplo.' | uppercase | lowercase }}
+<p appResaltar color="orange">
+  Ejemplo: {{ 'Un texto de ejemplo.' | uppercase | lowercase }}
+</p>
+
+<div appResaltar color="lightgreen">otro texto diferente</div>
 
 <router-outlet />
