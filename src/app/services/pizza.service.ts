@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Pizza } from '../dominio/pizza';
 
-const apiBase = 'http://localhost:3000/';
+const apiBase = 'http://localhost:3000';
 
 @Injectable({ providedIn: 'root' })
 export class PizzaService {
@@ -19,20 +19,20 @@ export class PizzaService {
       })
       .toPromise();
   }
-  getPizza(name: string): Promise<Pizza | undefined> {
-    const url = `${apiBase}/pizzas/${encodeURIComponent(name)}`;
+  getPizza(id: number): Promise<Pizza | undefined> {
+    const url = `${apiBase}/pizzas/${encodeURIComponent(id)}`;
     return this.http.get<Pizza>(url).toPromise();
   }
-  deletePizza(name: string): Promise<Pizza | undefined> {
-    const url = `${apiBase}/pizzas/${encodeURIComponent(name)}`;
+  deletePizza(id: number): Promise<Pizza | undefined> {
+    const url = `${apiBase}/pizzas/${encodeURIComponent(id)}`;
     return this.http.delete<Pizza>(url).toPromise();
   }
   createPizza(pizza: Pizza): Promise<Pizza | undefined> {
     const url = `${apiBase}/pizzas/`;
     return this.http.post<Pizza>(url, pizza, {}).toPromise();
   }
-  updatePizza(name: string, pizza: Pizza): Promise<Pizza | undefined> {
-    const url = `${apiBase}/pizzas/${encodeURIComponent(name)}`;
+  updatePizza(id: number, pizza: Pizza): Promise<Pizza | undefined> {
+    const url = `${apiBase}/pizzas/${encodeURIComponent(id)}`;
     return this.http.put<Pizza>(url, pizza).toPromise();
   }
 }

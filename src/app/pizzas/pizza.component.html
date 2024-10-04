@@ -1,8 +1,13 @@
 <div>
   <div *ngIf="pizza; else noPizza" class="pizza">
-    <div class="name">{{ pizza!.name }}</div>
-    <div class="price">{{ pizza!.price }} EUR</div>
+    <div class="name"><input type="text" [(ngModel)]="pizza!.name" /></div>
+    <div class="price">
+      <input type="number" [(ngModel)]="pizza!.price" /> EUR
+    </div>
     <img class="foto" [src]="pizza!.imageUrl" alt="foto" />
+    <button (click)="actualizar()">Actualizar</button>
+    <button (click)="borrar()">Borrar</button>
+    <div>{{ estado }}</div>
   </div>
 </div>
 
