@@ -20,26 +20,26 @@ export class PizzaComponent {
 
   actualizar() {
     if (this.pizza) {
-      this.pizzaService
-        .updatePizza(this.pizza.id, this.pizza)
-        .then(() => {
+      this.pizzaService.updatePizza(this.pizza.id, this.pizza).subscribe({
+        next: () => {
           this.estado = 'OK';
-        })
-        .catch((e) => {
+        },
+        error: (e) => {
           this.estado = e.message;
-        });
+        }
+      });
     }
   }
   borrar() {
     if (this.pizza) {
-      this.pizzaService
-        .deletePizza(this.pizza.id)
-        .then(() => {
+      this.pizzaService.deletePizza(this.pizza.id).subscribe({
+        next: () => {
           this.estado = 'OK';
-        })
-        .catch((e) => {
+        },
+        error: (e) => {
           this.estado = e.message;
-        });
+        }
+      });
     }
   }
 }

@@ -73,20 +73,44 @@ export class AppComponent {
     return JSON.stringify(obj, null, 2);
   }
 
+  /** version observables */
   consultar(): void {
     this.cargando = true;
-    this.pizzaService
-      .getPizzas()
-      .then((data) => {
-        this.pizzas = data ?? [];
+    const obs$ = this.pizzaService.getPizzas();
+
+    obs$.subscribe({
+      next: (d) => {
+        this.pizzas = d ?? [];
         this.error = '';
-      })
-      .catch((e) => {
+      },
+      error: (e) => {
         this.error = e.message;
         console.error(e);
-      })
-      .finally(() => {
+      },
+      complete: () => {
         this.cargando = false;
-      });
+      }
+    });
+
+    // hay que desubscribser para observables de larga duracion
+    // sub.unsubscribe();
   }
+
+  // version con promesas
+  // consultar(): void {
+  //   this.cargando = true;
+  //   this.pizzaService
+  //     .getPizzas()
+  //     .then((data) => {
+  //       this.pizzas = data ?? [];
+  //       this.error = '';
+  //     })
+  //     .catch((e) => {
+  //       this.error = e.message;
+  //       console.error(e);
+  //     })
+  //     .finally(() => {
+  //       this.cargando = false;
+  //     });
+  // }
 }
