@@ -32,6 +32,15 @@ Prespuesto {{ importe | currency : 'Eur' }}
 <div appResaltar color="lightgreen">otro texto diferente</div>
 
 <button (click)="consultar()">Consultar</button>
+<div *ngIf="cargando" class="spinner">
+  <img
+    src="https://loading.io/assets/mod/spinner/spinner/lg.gif"
+    alt="loading..."
+  />
+</div>
 <app-pizza *ngFor="let p of pizzas" [pizza]="p"></app-pizza>
+<div *ngIf="error" class="error">
+  {{ error }}
+</div>
 
 <router-outlet />

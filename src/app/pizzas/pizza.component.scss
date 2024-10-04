@@ -1,1 +1,15 @@
+.pizza {
+  border: 2px solid #fc0;
+  padding: 2rem;
+  margin: 0.5rem;
 
+  .name {
+    font-size: 1.5rem;
+  }
+  .price {
+    font-weight: bold;
+  }
+  .foto {
+    width: 5rem;
+  }
+}

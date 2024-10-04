@@ -1,7 +1,8 @@
 <div>
   <div *ngIf="pizza; else noPizza" class="pizza">
-    <div>{{ pizza!.name }}</div>
-    <div>{{ pizza!.price }} EUR</div>
+    <div class="name">{{ pizza!.name }}</div>
+    <div class="price">{{ pizza!.price }} EUR</div>
+    <img class="foto" [src]="pizza!.imageUrl" alt="foto" />
   </div>
 </div>
 

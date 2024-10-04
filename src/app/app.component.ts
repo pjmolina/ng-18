@@ -33,6 +33,8 @@ export class AppComponent {
   title = 'app0';
   importe = 12000000.2344;
   searchText = '';
+  cargando = false;
+  error = '';
 
   pizzas: Pizza[] = [];
 
@@ -72,8 +74,19 @@ export class AppComponent {
   }
 
   consultar(): void {
-    this.pizzaService.getPizzas().then((data) => {
-      this.pizzas = data ?? [];
-    });
+    this.cargando = true;
+    this.pizzaService
+      .getPizzas()
+      .then((data) => {
+        this.pizzas = data ?? [];
+        this.error = '';
+      })
+      .catch((e) => {
+        this.error = e.message;
+        console.error(e);
+      })
+      .finally(() => {
+        this.cargando = false;
+      });
   }
 }
