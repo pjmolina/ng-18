@@ -3,6 +3,8 @@ import { Pizza } from '../dominio/pizza';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { PizzaService } from '../services/pizza.service';
+//import { C3DTBatchTable } from 'itowns';
+// import * as ITOWNS from 'itowns/dist/itowns';
 
 @Component({
   selector: 'app-pizza',
