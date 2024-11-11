@@ -33,6 +33,7 @@ import {
   mergeWith,
   Observable,
   ReplaySubject,
+  retry,
   Subject,
   Subscription,
   throttleTime,
@@ -103,7 +104,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
 
     const obs3$ = zip([obs1$, obs2$], (a, b) => `|${a}-${b}|`);
 
-    obs3$.subscribe({
+    obs1$.subscribe({
       next: (d) => {
         console.log('dato: ' + d);
       },
@@ -115,11 +116,12 @@ export class AppComponent implements AfterViewInit, OnDestroy {
       }
     });
 
-    // this.t1$.next('3');
-    // this.t1$.next('4');
-    // this.t1$.next('5');
-    // this.t1$.error("paso algo malo...");
-    // this.t1$.complete();
+    this.t1$.next('3');
+    this.t1$.next('4');
+    this.t1$.next('5');
+    this.t1$.error('paso algo malo...');
+    this.t1$.next('6');
+    this.t1$.complete();
   }
 
   count = 0;
