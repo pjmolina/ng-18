@@ -18,8 +18,12 @@ import { PizzaComponent } from './pizzas/pizza.component';
 import { Pizza } from './dominio/pizza';
 import { PizzaService } from './services/pizza.service';
 import {
+  AsyncSubject,
+  BehaviorSubject,
   buffer,
   bufferTime,
+  combineLatest,
+  debounceTime,
   filter,
   from,
   fromEvent,
@@ -28,8 +32,11 @@ import {
   merge,
   mergeWith,
   Observable,
+  ReplaySubject,
+  Subject,
   Subscription,
-  throttleTime
+  throttleTime,
+  zip
 } from 'rxjs';
 
 @Component({
@@ -55,6 +62,7 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   title = 'app0';
   importe = 12000000.2344;
   searchText = '';
+  searchText2 = '';
   cargando = false;
   error = '';
 
@@ -82,14 +90,57 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   constructor(
     private logger: LoggerV2Service,
     private pizzaService: PizzaService
-  ) {}
+  ) {
+    this.t1$ = new Subject();
+    this.t2$ = new Subject();
+
+    // this.t1$.next('0');
+    // this.t1$.next('1');
+    // this.t1$.next('2');
+
+    const obs1$ = this.t1$.asObservable();
+    const obs2$ = this.t2$.asObservable();
+
+    const obs3$ = zip([obs1$, obs2$], (a, b) => `|${a}-${b}|`);
+
+    obs3$.subscribe({
+      next: (d) => {
+        console.log('dato: ' + d);
+      },
+      error: (e) => {
+        console.log(e);
+      },
+      complete: () => {
+        console.log('termino');
+      }
+    });
+
+    // this.t1$.next('3');
+    // this.t1$.next('4');
+    // this.t1$.next('5');
+    // this.t1$.error("paso algo malo...");
+    // this.t1$.complete();
+  }
 
   count = 0;
   sub?: Subscription;
 
+  t1$?: Subject<string>;
+  t2$?: Subject<string>;
+
   ngAfterViewInit(): void {
     const zone = window.document.getElementById('z1')!;
     const textBox = window.document.getElementById('t2')!;
+    const busqueda = window.document.getElementById('busqueda')!;
+
+    fromEvent(busqueda, 'keypress')
+      .pipe(debounceTime(300))
+      .subscribe((d) => {
+        if (this.searchText2 !== this.searchText) {
+          console.log('Buscando...' + this.searchText2);
+          this.searchText = this.searchText2;
+        }
+      });
 
     const $clicks = fromEvent(zone, 'click').pipe(map((e) => '*'));
     const $keys = fromEvent(textBox, 'keypress').pipe(
@@ -183,4 +234,11 @@ export class AppComponent implements AfterViewInit, OnDestroy {
   //       this.cargando = false;
   //     });
   // }
+
+  t1OnClick(e: KeyboardEvent): void {
+    this.t1$!.next(e.key);
+  }
+  t2OnClick(e: KeyboardEvent): void {
+    this.t2$!.next(e.key);
+  }
 }

@@ -2,9 +2,10 @@
 
 <div class="filter">
   <input
+    id="busqueda"
     type="text"
     placeholder="Escribe aqui para filtrar"
-    [(ngModel)]="searchText"
+    [(ngModel)]="searchText2"
   />
 </div>
 <app-user
@@ -52,7 +53,8 @@ Prespuesto {{ importe | currency : 'Eur' }}
 
 <div>
   <h3>Productor de observables</h3>
-  <input id="t2" type="text" />
+  <input type="text" (keypress)="t1OnClick($event)" />
+  <input type="text" (keypress)="t2OnClick($event)" />
 </div>
 
 <router-outlet />
