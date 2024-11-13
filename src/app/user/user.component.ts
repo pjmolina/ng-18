@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -11,17 +12,52 @@ import { User } from '../dominio/user';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { LoggerService } from '../services/logger.service';
+import {
+  animate,
+  state,
+  style,
+  transition,
+  trigger
+} from '@angular/animations';
 
 @Component({
   selector: 'app-user',
   standalone: true,
   imports: [CommonModule, FormsModule],
   templateUrl: './user.component.html',
-  styleUrl: './user.component.scss'
+  styleUrl: './user.component.scss',
+  changeDetection: ChangeDetectionStrategy.Default,
+  animations: [
+    trigger('animacionSel', [
+      state(
+        'no',
+        style({
+          backgroundColor: '#ffffff',
+          transform: 'scale(1)'
+          //'font-size': '10px'
+        })
+      ),
+      state(
+        'si',
+        style({
+          backgroundColor: '#ffffff'
+          // transform: 'scale(1.1)',
+          // 'font-size': '40px'
+        })
+      ),
+      transition('no => si', [animate('2000ms ease-in')]),
+      transition('si => no', [animate('2000ms ease-out')])
+    ])
+  ]
 })
 export class UserComponent implements User, OnInit, OnChanges {
   private _name = '';
   private _surname = '';
+
+  @Input()
+  public seleccionado = 'no';
+
+  public a = 0;
 
   @Input()
   get name(): string {
@@ -69,6 +105,8 @@ export class UserComponent implements User, OnInit, OnChanges {
   }
 
   pulsado(): void {
+    this.seleccionado = this.seleccionado === 'si' ? 'no' : 'si';
+
     this.logger.log(`Pulsado. estamos aqui. ${this.name}`);
 
     this.selectedUser.emit({
