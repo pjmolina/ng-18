@@ -60,6 +60,13 @@ import {
 export class AppComponent implements AfterViewInit, OnDestroy {
   // @ViewChild('z1', { static: true }) zona!: HTMLDivElement;
 
+  entrada = '';
+  datos = '';
+
+  addEntrada(): void {
+    this.datos += '\r\n' + this.entrada;
+  }
+
   title = 'app0';
   importe = 12000000.2344;
   searchText = '';

@@ -16,7 +16,7 @@ export class PizzaService {
       .get<Pizza[]>(url, {
         headers: {
           'x-client-version': '1.0',
-          Authorize: 'Bearer lksdlfklsfssdss'
+          Authorize: 'Bearer JWT'
         }
       })
       .pipe(map((listaDePizzas) => listaDePizzas.map((p) => meteIva(p))));
