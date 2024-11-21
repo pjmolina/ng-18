@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<xliff version="1.2"
+  xmlns="urn:oasis:names:tc:xliff:document:1.2">
+  <file source-language="en-US" datatype="plaintext" original="ng2.template">
+    <body>
+      <trans-unit id="1214965068610447806" datatype="html">
+        <source>App0</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">1,4</context>
+        </context-group>
+        <note priority="1" from="description">title</note>
+      </trans-unit>
+      <trans-unit id="9213700173551370283" datatype="html">
+        <source>Injection</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">4,5</context>
+        </context-group>
+        <note priority="1" from="description">injection</note>
+      </trans-unit>
+      <trans-unit id="6503613780068201083" datatype="html">
+        <source>Add</source>
+        <context-group purpose="location">
+          <context context-type="sourcefile">src/app/app.component.html</context>
+          <context context-type="linenumber">6,8</context>
+        </context-group>
+        <note priority="1" from="description">add</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

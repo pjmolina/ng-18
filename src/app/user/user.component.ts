@@ -20,6 +20,8 @@ import {
   trigger
 } from '@angular/animations';
 
+import { signal } from '@angular/core';
+
 @Component({
   selector: 'app-user',
   standalone: true,
@@ -53,6 +55,7 @@ import {
 export class UserComponent implements User, OnInit, OnChanges {
   private _name = '';
   private _surname = '';
+  private myValue = signal('hello world', {});
 
   @Input()
   public seleccionado = 'no';
@@ -93,6 +96,10 @@ export class UserComponent implements User, OnInit, OnChanges {
 
   constructor(private logger: LoggerService) {
     this.logger.log(`constructor para ${this.name}`);
+
+    this.myValue.set('v1');
+    this.myValue.update((x) => x + 'v2');
+    this.myValue();
   }
 
   ngOnChanges(changes: SimpleChanges): void {
